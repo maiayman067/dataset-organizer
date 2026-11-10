@@ -34,3 +34,10 @@ def organize_folder(target_dir):
 if __name__ == "__main__":
     folder_to_clean = sys.argv[1] if len(sys.argv) > 1 else "."
     organize_folder(folder_to_clean)
+
+def print_summary(target_dir):
+    print("\n--- Folder Summary ---")
+    for root, dirs, files in os.walk(target_dir):
+        level = root.replace(target_dir, '').count(os.sep)
+        indent = ' ' * 4 * (level)
+        print(f"{indent}{os.path.basename(root)}/ ({len(files)} files)")
